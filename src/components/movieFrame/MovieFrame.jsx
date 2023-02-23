@@ -56,6 +56,7 @@ const MovieFrame = () => {
             />
 
             <br/>
+            <br />
 
             <div>
                 <button onClick={() => setFilter('ascending')}>Year Ascending</button>
@@ -64,6 +65,8 @@ const MovieFrame = () => {
                 <button onClick={() => setFilter('aToZ')}>A - Z</button>
                 <button onClick={() => setFilter('zToA')}>Z - A</button>
             </div>
+
+
 
             <div className='frameWrap'>
                 {filteredMovies.map((movie) => {
