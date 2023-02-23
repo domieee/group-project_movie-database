@@ -21,7 +21,7 @@ const MovieFrame = () => {
         movies.sort((a, b) => {
             if (a.title < b.title) {
                 return -1;
-            } else if (a.title > b.title) {
+            } else  {
                 return 1;
             }
         })
@@ -29,7 +29,7 @@ const MovieFrame = () => {
         movies.sort((a, b) => {
             if (a.title > b.title) {
                 return -1;
-            } else if (a.title < b.title) {
+            } else {
                 return 1;
             }
         })
