@@ -2,15 +2,15 @@ import movies from '../data/data.js'
 import MovieData from '../movieData/MovieData.jsx'
 import { useState } from 'react'
 
-/* 
+/*
     TODO: Erstelle ein Feld, in dem man neue Filme hinzufügen kann.
-TODO: Erstelle eine Suchleiste, um nach Filmen zu suchen.
-
+    TODO: Erstelle eine Suchleiste, um nach Filmen zu suchen.
 */
 
 const MovieFrame = () => {
-    console.log(movies);
+
     const [filter, setFilter] = useState(false)
+
     if (filter === 'ascending') {
         movies.sort((a, b) => a.year - b.year)
     } else if (filter === 'descending') {
