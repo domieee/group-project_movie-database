@@ -1,11 +1,9 @@
 import movies from '../data/data.js'
 import MovieData from '../movieData/MovieData.jsx'
-
 import { useState } from 'react'
 
 /*
     TODO: Erstelle ein Feld, in dem man neue Filme hinzufügen kann.
-    TODO: Erstelle eine Suchleiste, um nach Filmen zu suchen.
 */
 
 const MovieFrame = () => {
@@ -13,14 +11,12 @@ const MovieFrame = () => {
     const [filter, setFilter] = useState(false)
     const [query, setQuery] = useState('')
 
+    // Creates a copy of the actual data, so we can manipulate the copy instead of the real data
     let filteredMovies = [...movies]
 
-    console.log(filteredMovies, 'filter');
     filteredMovies = movies.filter(movie => {
         return movie.title.toLowerCase().includes(query.toLowerCase())
     })
-
-
 
     if (filter === 'ascending') {
         movies.sort((a, b) => a.year - b.year)
@@ -48,27 +44,26 @@ const MovieFrame = () => {
 
     return (
         <>
-            <h1>Movie Databank Project</h1>
-            <div>
-                <button onClick={() => setFilter('ascending')}>Ascending</button>
-                <button onClick={() => setFilter('descending')}>Descending</button>
-                <button onClick={() => setFilter('bestRate')}>Best Rate</button>
-                <button onClick={() => setFilter('aToZ')}>A - Z</button>
-                <button onClick={() => setFilter('zToA')}>Z - A</button>
-
-            </div>
+            <h1>Movie Data Project</h1>
 
             <input
             onChange={e => {
                 setQuery(e.target.value)
             }}
             type="text" 
-            placeholder='Search movie'
+            placeholder='Search movie title'
             value={query}
             />
-            <form>
 
-            </form>
+            <br/>
+
+            <div>
+                <button onClick={() => setFilter('ascending')}>Year Ascending</button>
+                <button onClick={() => setFilter('descending')}>Year Descending</button>
+                <button onClick={() => setFilter('bestRate')}>Best Rate</button>
+                <button onClick={() => setFilter('aToZ')}>A - Z</button>
+                <button onClick={() => setFilter('zToA')}>Z - A</button>
+            </div>
 
             <div className='frameWrap'>
                 {filteredMovies.map((movie) => {
