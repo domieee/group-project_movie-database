@@ -1,5 +1,6 @@
 import movies from '../data/data.js'
 import MovieData from '../movieData/MovieData.jsx'
+
 import { useState } from 'react'
 
 /*
@@ -10,6 +11,16 @@ import { useState } from 'react'
 const MovieFrame = () => {
 
     const [filter, setFilter] = useState(false)
+    const [query, setQuery] = useState('')
+
+    let filteredMovies = [...movies]
+
+    console.log(filteredMovies, 'filter');
+    filteredMovies = movies.filter(movie => {
+        return movie.title.toLowerCase().includes(query.toLowerCase())
+    })
+
+
 
     if (filter === 'ascending') {
         movies.sort((a, b) => a.year - b.year)
@@ -21,7 +32,7 @@ const MovieFrame = () => {
         movies.sort((a, b) => {
             if (a.title < b.title) {
                 return -1;
-            } else  {
+            } else {
                 return 1;
             }
         })
@@ -37,16 +48,30 @@ const MovieFrame = () => {
 
     return (
         <>
+            <h1>Movie Databank Project</h1>
             <div>
                 <button onClick={() => setFilter('ascending')}>Ascending</button>
                 <button onClick={() => setFilter('descending')}>Descending</button>
                 <button onClick={() => setFilter('bestRate')}>Best Rate</button>
                 <button onClick={() => setFilter('aToZ')}>A - Z</button>
                 <button onClick={() => setFilter('zToA')}>Z - A</button>
+
             </div>
-            <h1>Movie Databank Project</h1>
+
+            <input
+            onChange={e => {
+                setQuery(e.target.value)
+            }}
+            type="text" 
+            placeholder='Search movie'
+            value={query}
+            />
+            <form>
+
+            </form>
+
             <div className='frameWrap'>
-                {movies.map((movie) => {
+                {filteredMovies.map((movie) => {
                     return <MovieData
                         title={movie.title}
                         year={movie.year}
